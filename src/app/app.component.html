@@ -1,22 +1,11 @@
 <h2>Age recognition: </h2>
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
-
-    <div class="row">
-      <button (click)="start()" class="btn btn-primary">Play</button>
-      <button (click)="pause()" class="btn btn-warning">Pause</button>
-      <button (click)="resume()" class="btn btn-info">Resume</button>
-    </div>
-
-    <div class="row">
-        <div class="text-center">
-          <h3>
-            <video #videoElement></video>
-          </h3>
-        </div>
-    </div>
-
-  </div>
-  <div class="col-md-3"></div>
+<div id="app">
+  <div><video #video id="video" width="640" height="480" autoplay></video></div>
+  <div><button id="snap" (click)="capture()">Snap Photo</button></div>
+  <canvas #canvas id="canvas" width="640" height="480"></canvas>
+  <ul>
+      <li *ngFor="let c of captures">
+          <img src="{{ c }}" height="50" />
+      </li>
+  </ul>
 </div>
