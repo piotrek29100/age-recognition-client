@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import {HttpClient, HttpResponse, HttpHeaders} from '@angular/common/http'
+import {Constants, FaceInfo, FaceInfoList} from './constants'
 
 @Component({
     selector: 'app-root',
@@ -15,7 +17,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     public captures: Array<any>;
 
-    public constructor() {
+    public constructor(private http : HttpClient) {
         this.captures = [];
     }
 
@@ -33,5 +35,16 @@ export class AppComponent implements OnInit, AfterViewInit {
     public capture() {
         const context = this.canvas.nativeElement.getContext('2d').drawImage(this.video.nativeElement, 0, 0, 640, 480);
         this.captures.push(this.canvas.nativeElement.toDataURL('image/png'));
+        this.uploadFile(this.captures)
+    }
+
+    uploadFile(files) {
+        const formData: FormData = new FormData();
+        formData.append("file", files[0]);
+        let url = Constants.API_ENDPOINT;
+
+        this.http.post<FaceInfoList>(url,formData).subscribe((data: any) => {
+            console.log(data);
+          });
     }
 }
