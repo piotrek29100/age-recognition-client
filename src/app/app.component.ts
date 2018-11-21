@@ -40,10 +40,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     uploadFile(files) {
         const formData: FormData = new FormData();
-        formData.append("file", files[0]);
-        let url = Constants.API_ENDPOINT;
+        formData.append('file', files[files.length - 1]);
+        const url = Constants.API_ENDPOINT;
 
-        this.http.post<FaceInfoList>(url,formData).subscribe((data: any) => {
+        this.http.post<FaceInfoList>(url, formData).subscribe((data: any) => {
             console.log(data);
           });
     }
