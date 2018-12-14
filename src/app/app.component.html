@@ -1,11 +1,13 @@
 <h2>Age recognition: </h2>
 <div id="app">
-  <div><video #video id="video" width="640" height="480" autoplay></video></div>
-  <div><button id="snap" (click)="capture()">Snap Photo</button></div>
+  <div><video #video id="video" width="640" height="480" autoplay *ngIf="showResults == false"></video></div>
+  <div><img width="640" src={{actualImage}} height="480" *ngIf="showResults == true"/></div>
+  <div><button id="snap" (click)="capture()"*ngIf="showResults == false">Snap Photo</button></div>
+  <div><button id="record" (click)="record()" *ngIf="showResults == true">Start Recording</button></div>
   <canvas #canvas id="canvas" width="640" height="480"></canvas>
   <ul>
-      <li *ngFor="let c of captures">
-          <img src="{{ c }}" height="50" />
+      <li *ngFor="let c of captures; let i = index">
+          <img src="{{ c }}" height="50" (click)="viewImage(i)"/>
       </li>
   </ul>
 </div>

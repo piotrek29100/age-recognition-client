@@ -17,6 +17,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     public captures: Array<any>;
 
+    showResults = false;
+    actualImage = null;
+
     public constructor(private http : HttpClient) {
         this.captures = [];
     }
@@ -40,11 +43,45 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     uploadFile(files) {
         const formData: FormData = new FormData();
-        formData.append('file', files[files.length - 1]);
+        var position = files.length - 1;
+        formData.append('file',files[position]);
         const url = Constants.API_ENDPOINT;
 
         this.http.post<FaceInfoList>(url, formData).subscribe((data: any) => {
+
+            var img = new Image()
+            img.src = files[position]
+            let canvas = this.canvas.nativeElement;
+            let context = canvas.getContext('2d');
+            context.drawImage(img,0,0)
+            context.font = "20px Calibri";
             console.log(data);
+
+            for(var i = 0; i < data.length; i++) {
+                var face = data[i];
+                context.beginPath();
+                context.lineWidth = "4";
+                context.strokeStyle = "red";
+                console.log(face.left)
+                console.log(face.top)
+                console.log(face.right - face.left)
+                console.log(face.bottom - face.top)
+                context.rect(face.left, face.top, face.right - face.left, face.bottom - face.top);
+                context.stroke();
+
+                context.fillText(face.age, face.left + 3, face.top + 15);
+            }
+            
+            files[position] = canvas.toDataURL()
           });
+    }
+    public viewImage(index) {
+        this.showResults = true
+        this.actualImage = this.captures[index]
+        console.log(index)
+    }
+    public record() {
+        this.showResults = false;
+        this.ngAfterViewInit()
     }
 }
