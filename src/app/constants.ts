@@ -1,5 +1,5 @@
 export class Constants {
-    public static API_ENDPOINT = `http://localhost:5000/uploadFile`;                                           
+    public static API_ENDPOINT = `/api/uploadFile`;                                           
 }
 
 export interface FaceInfo {
