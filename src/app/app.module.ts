@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { PortraitViewComponent } from './portrait-view/portrait-view.component';
+import { LandscapeViewComponent } from './landscape-view/landscape-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PortraitViewComponent,
+    LandscapeViewComponent
   ],
   imports: [
     BrowserModule,

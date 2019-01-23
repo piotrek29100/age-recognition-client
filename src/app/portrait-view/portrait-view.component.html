@@ -1,0 +1,19 @@
+<nav class="navbar navbar-dark py-0 bg-primary navbar-expand-lg py-md-0">
+  <a class="navbar-brand" href="#" py-0>
+    <img src="../assets/logo.png" vspace="0" [ngStyle]="{'height': navbarHeight+'px'}">
+  </a>
+<button class="navbar-toggler mt-1" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-bars"></i>
+</button>
+<div class="navbar-collapse collapse" id="navbarNav">
+  <h2 class="title">Age Recognition</h2>
+</div>
+</nav>
+
+<div id="app" style="margin-top: 2%; margin-left: 2%">
+  <div style="display: none"><video #video id="video" width={{cameraWidth}} height={{cameraHeight}} autoplay *ngIf="showResults == false"></video></div>
+  
+  <canvas #canvas1 id="canvas1" width={{cameraWidth}} height={{cameraHeight}} *ngIf="showResults == false"></canvas>
+  <img width={{cameraWidth}} height={{cameraHeight}} src={{actualImage}} *ngIf="showResults == true"/>
+  <canvas #canvas2 id="canvas2" width={{cameraWidth}} height={{cameraHeight}} style="display: none"></canvas>
+</div>
