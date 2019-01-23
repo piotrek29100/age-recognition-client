@@ -27,7 +27,7 @@
         <li class="desc" >Last captured photos:</li>
         <ul class="align-self-stretch flex-fill" style="margin-top: 2%">
             <li *ngFor="let c of captures; let i = index">
-                <img src="{{ c }}" height="{{lastPhotoHeight}}" (click)="viewImage(i)"/>
+                <img style="margin-top: 2%" src="{{ c }}" height="{{lastPhotoHeight}}" (click)="viewImage(i)"/>
             </li>
         </ul>
     </div>

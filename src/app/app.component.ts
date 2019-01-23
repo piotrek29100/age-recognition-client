@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     cameraWidth : any
     cameraHeight : any
-    navbarHeight : any
+    navbarHeight = 30
     fontSize : any
     descHeight: any
     lastPhotoHeight: any
@@ -36,16 +36,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
-        this.calculateSizes()
-    }
-
-    calculateSizes() {
-        this.cameraWidth = window.innerWidth * 0.5;
-        this.cameraHeight = window.innerHeight * 0.8
-        this.navbarHeight = window.innerHeight * 0.08;
-        this.fontSize = this.navbarHeight * 0.07;
-        this.descHeight = window.innerHeight * 0.43
-        this.lastPhotoHeight = this.cameraHeight / 4
+        this.ngAfterViewInit()
     }
 
     public constructor(private http : HttpClient) {
@@ -53,12 +44,28 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     public ngOnInit() { 
-        this.calculateSizes()
     }
 
     public ngAfterViewInit() {
+        console.log("Windows width: " + window.innerWidth + " height: " + window.innerHeight) 
+        var tmpCameraRealSize = {width: 640, height: 480}
+        this.cameraWidth = window.innerWidth / 2
+        for(var i = 0; i < Constants.RESOLUTIONS.length; i++) {
+            if(this.cameraWidth >= Constants.RESOLUTIONS[i].width) {
+                tmpCameraRealSize = Constants.RESOLUTIONS[i]
+            }
+        }
+
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+            navigator.mediaDevices.getUserMedia({ video: {width: tmpCameraRealSize.width, height: tmpCameraRealSize.height} }).then(stream => {
+                let {width, height} = stream.getTracks()[0].getSettings();
+                console.log("Camera width: " + width + " height: " + height) 
+                this.cameraWidth = width
+                this.cameraHeight = height
+                this.navbarHeight = window.innerHeight * 0.08;
+                this.fontSize = this.navbarHeight * 0.07;
+                this.descHeight = window.innerHeight * 0.43
+                this.lastPhotoHeight = this.cameraHeight / 4
                 this.video.nativeElement.srcObject = stream;
                 this.video.nativeElement.addEventListener('play', function() {
         self.timerCallback();
