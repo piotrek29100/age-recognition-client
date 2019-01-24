@@ -1,1 +1,5 @@
-<app-landscape-view></app-landscape-view>
+<app-portrait-view *ngIf="orientation == 'portrait'"></app-portrait-view>
+<app-landscape-view *ngIf="orientation == 'landscape'"></app-landscape-view>
+
+
+
