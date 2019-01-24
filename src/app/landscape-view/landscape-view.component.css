@@ -16,3 +16,10 @@ li {
     display: inline;
     padding: 5px;
 }
+.desc {
+
+    font-size: 1.4vw
+}
+.last {
+    color: blue
+}

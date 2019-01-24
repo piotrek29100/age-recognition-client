@@ -26,6 +26,10 @@ export class LandscapeViewComponent implements OnInit,AfterViewInit {
     showResults = false;
     actualImage = null;
     private timer;
+
+    setRecentData(data) {
+        this.recentData = data
+    }
     private recentData;
 
     cameraWidth : any
@@ -34,7 +38,8 @@ export class LandscapeViewComponent implements OnInit,AfterViewInit {
     fontSize : any
     descHeight: any
     lastPhotoHeight: any
-    maxPhotos = 6
+    maxPhotos = 3
+    description = Constants.DESCRIPTION
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {

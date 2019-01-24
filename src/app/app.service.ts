@@ -79,6 +79,6 @@ import { viewAttached } from '@angular/core/src/render3/instructions';
             captures.shift()
         }
         
-        //this.uploadFile(this.captures) ///Odkomentować
+        this.uploadFile(captures, canvas1, view) ///Odkomentować
     }
  } 

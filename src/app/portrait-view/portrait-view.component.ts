@@ -27,6 +27,9 @@ export class PortraitViewComponent implements OnInit,AfterViewInit {
     showResults = false;
     actualImage = null;
     private timer;
+    setRecentData(data) {
+        this.recentData = data
+    }
     private recentData;
 
     cameraWidth = 640
@@ -37,6 +40,7 @@ export class PortraitViewComponent implements OnInit,AfterViewInit {
     lastPhotoHeight: any
     maxPhotos = 4
     isRotated = false
+    description = Constants.DESCRIPTION + "\n Authors: Daria Hubernatorova, Piotr Wawrzyniak, Damian Gutowski"
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {

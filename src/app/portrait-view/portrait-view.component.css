@@ -17,8 +17,9 @@ li {
     padding: 5px;
 }
 .desc {
-    text-align: center;
-    flex: 1 1 auto;
-    align-self: center;
-    justify-content: center;
+
+    font-size: 1.4vw
+}
+.last {
+    color: blue
 }

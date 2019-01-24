@@ -10,8 +10,8 @@
 </div>
 </nav>
 
-<h1 class="desc" style="height: 500;">Cześć! To jest nasza super aplikacja. Możesz być dumny, że dane było Ci ją przetestować! TODO</h1>
-<li class="desc" flex-fill style="height: 500;">Cześć! To jest nasza super aplikacja. Możesz być dumny, że dane było Ci ją przetestować! TODO</li>
+<h1 class="desc" style="height: 500;">{{description}}</h1>
+<div class="startRecordButton"  align-self-center flex-fill *ngIf="showResults == true"><button flex-fill align-self-center class="btn btn-primary" id="record" (click)="record()">Start Recording</button></div>
 
 <div id="app" style="margin-top: 2%; margin-left: 2%">
   <div style="display: none"><video #video id="video" width={{cameraWidth}} height={{cameraHeight}} autoplay *ngIf="showResults == false"></video></div>
@@ -21,7 +21,7 @@
   <canvas #canvas2 id="canvas2" width={{cameraWidth}} height={{cameraHeight}} style="display: none"></canvas>
 </div>
 
-<li class="desc align-self-center" >Last captured photos:</li>
+<li class="desc align-self-center last" >Last captured photos:</li>
 <ul class="align-self-stretch flex-fill" style="margin-top: 2%">
     <li *ngFor="let c of captures; let i = index">
         <img style="margin-top: 2%" src="{{ c }}" height="{{lastPhotoHeight}}" (click)="viewImage(i)"/>

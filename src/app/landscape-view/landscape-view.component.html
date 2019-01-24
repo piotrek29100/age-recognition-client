@@ -22,9 +22,9 @@
   </div>
 
   <div class="d-flex flex-column bd-highlight mb-3" style="margin-left: 2%; margin-right: 2%; margin-top: 2%">
-      <li class="desc" flex-fill style="height: 500;">Cześć! To jest nasza super aplikacja. Możesz być dumny, że dane było Ci ją przetestować! TODO</li>
+      <li class="desc" flex-fill style="height: 500;">{{description}}</li>
       <div class="startRecordButton"  align-self-center flex-fill *ngIf="showResults == true"><button flex-fill align-self-center class="btn btn-primary" id="record" (click)="record()">Start Recording</button></div>
-      <li class="desc" >Last captured photos:</li>
+      <li class="desc last" >Last captured photos:</li>
       <ul class="align-self-stretch flex-fill" style="margin-top: 2%">
           <li *ngFor="let c of captures; let i = index">
               <img style="margin-top: 2%" src="{{ c }}" height="{{lastPhotoHeight}}" (click)="viewImage(i)"/>
@@ -32,7 +32,6 @@
       </ul>
   </div>
 </div>
-
 
 
 <nav class="navbar navbar-dark py-0 bg-primary navbar-expand-lg py-md-0 fixed-bottom">
