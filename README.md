@@ -1,5 +1,7 @@
 # AgeRecognitionClient
 
+Project created during Case Studies 2019 Winter semester https://github.com/pbiecek/CaseStudies2019W.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
 
 ## Development server
